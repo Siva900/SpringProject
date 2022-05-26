@@ -31,7 +31,7 @@ public class AuthService{
 		return flag;
 	}
 	
-	public Boolean ValidateParameters(String phone_number, String scheduled_time) throws ParseException{
+	public Boolean ValidateParameters(String phone_number, String scheduled_time, String message) throws ParseException{
 		Boolean flag = false;
 		
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
@@ -50,8 +50,8 @@ public class AuthService{
 	    System.out.println("Current time in auth service 2");
 	    
 		Boolean bool1 = dateTime1.before(dateTime2);
-		
-		if(phone_number.length() == 12 && phone_number.substring(0, 2).equals("91") == true && bool1)
+		int length = message.length();
+		if(phone_number.length() == 12 && phone_number.substring(0, 2).equals("91") == true && bool1 && length!=0)
 			flag = true;
 		
 		System.out.println("auth service final flag: "+flag);

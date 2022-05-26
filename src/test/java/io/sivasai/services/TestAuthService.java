@@ -54,14 +54,14 @@ public class TestAuthService {
 	@Test
 	public void testValidation() throws ParseException {
 		
-		assertEquals(authService.ValidateParameters("919542684424", "2022-05-26 22:13:00"),true);
+		assertEquals(authService.ValidateParameters("919542684424", "2022-05-26 22:13:00","this is sample message"),true);
 		
 	}
 	
 	@Test
 	public void testValidationInvalid() throws ParseException {
-		
-		assertEquals(authService.ValidateParameters("91954264424", "2022-05-22 22:13:00"),false);
+		String empty_message = "";
+		assertEquals(authService.ValidateParameters("91954264424", "2022-05-22 22:13:00",empty_message),false);
 		
 	}
 	

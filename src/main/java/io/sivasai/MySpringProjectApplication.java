@@ -42,7 +42,7 @@ public class MySpringProjectApplication{
 	@EventListener(ApplicationReadyEvent.class)
 	public void CallTimerTask() {
 		//initial delay, timer interval
-		timer.schedule(timertask,10000,15000);
+		timer.schedule(timertask,10000,10000);
 	}
 
 }

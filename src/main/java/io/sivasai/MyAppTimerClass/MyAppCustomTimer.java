@@ -156,7 +156,7 @@ public class MyAppCustomTimer extends TimerTask{
 	            
 	            response = result.toString(this.charset);
 	            
-	            if(status==400) {
+	            if(status==400 || status==500) {
 	            	messageService.UpdateDatabase(status,-1,msg.getID());
 	            }
 	            else if(messageService.getMessageById(msg.getID()).getTries_count() == 5) {

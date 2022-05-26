@@ -52,17 +52,20 @@ public class UserController {
 		String client_id = clientService.getClientByToken(auth_token).getID();
 		
 		System.out.println("client id "+client_id);
-		Boolean flag = authService.ValidateParameters(recipient_number, scheduled_time);
+		Boolean flag = authService.ValidateParameters(recipient_number, scheduled_time, message_body);
 		
 		if(flag == true) {
 			messageService.InsertMessage(client_id, message_body, recipient_number, scheduled_time);
 			response.setStatus(HttpServletResponse.SC_ACCEPTED);
+			return "Welcome to this app user your message is successfully received!!";
 		}
 		else {
 			System.out.println("Error in parameters validation");
 			response.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+			
+			return "Validation Error in request body parameters";
 		}
 		
-		return "Welcome to this page user!!";
+		
 	}
 }
