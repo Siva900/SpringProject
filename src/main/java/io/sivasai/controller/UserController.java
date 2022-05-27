@@ -40,10 +40,8 @@ public class UserController {
 	@RequestMapping(method=RequestMethod.POST,value="/messages")
 	public String getMessage(HttpServletResponse response,HttpServletRequest request,@RequestHeader(value="authKey") String auth_token, @RequestBody Map<String, String> requestBody) throws ParseException, SQLException{
 		
-				//get details from header
-				//content type and apikey
-				//perform authorization
-				//then perform validation
+				//get details from header : content type and apikey
+				//perform authorization : security interceptor
 		
 		String recipient_number = requestBody.get("recipient_number");
 		String scheduled_time = requestBody.get("scheduled_time");
@@ -52,8 +50,12 @@ public class UserController {
 		String client_id = clientService.getClientByToken(auth_token).getID();
 		
 		System.out.println("client id "+client_id);
+		
+		//performing validation
 		Boolean flag = authService.ValidateParameters(recipient_number, scheduled_time, message_body);
 		
+		//If validation successful then insert message into the database
+		//if fails then sent error response to the localhost
 		if(flag == true) {
 			messageService.InsertMessage(client_id, message_body, recipient_number, scheduled_time);
 			response.setStatus(HttpServletResponse.SC_ACCEPTED);

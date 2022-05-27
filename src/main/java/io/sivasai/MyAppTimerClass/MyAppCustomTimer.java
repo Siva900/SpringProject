@@ -45,9 +45,7 @@ public class MyAppCustomTimer extends TimerTask{
 		//fired when timer is reached
 		//get the timer
 		//run the query
-		//get all messages to be executed
-		//format queries into http request 
-		//create headers and send them
+		//get all messages to be executed 
 		
 		List<MessageClass> msgs = new ArrayList<MessageClass>();
 		
@@ -82,6 +80,7 @@ public class MyAppCustomTimer extends TimerTask{
 		
 	}
 
+	//format queries into http request
 	public int HttpPostForm(MessageClass msg) throws JsonParseException {
 		
 		String response = "";
@@ -111,6 +110,7 @@ public class MyAppCustomTimer extends TimerTask{
 	    
 	    queryParams.put("message", jsonParam);
         
+	  //create headers and send them
 	    try {
 	        URL url = new URL(baseUrl);
 	        httpConn = (HttpURLConnection) url.openConnection();
@@ -182,6 +182,7 @@ public class MyAppCustomTimer extends TimerTask{
 	    return status;
 	}
 	
+	//encode the request parameters to bytes stream
 	private byte[] getParamsByte(Map<String, Object> params) {
 		
         byte[] result = null;

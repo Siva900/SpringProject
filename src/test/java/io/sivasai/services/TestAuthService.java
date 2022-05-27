@@ -54,7 +54,7 @@ public class TestAuthService {
 	@Test
 	public void testValidation() throws ParseException {
 		
-		assertEquals(authService.ValidateParameters("919542684424", "2022-05-26 22:13:00","this is sample message"),true);
+		assertThat(authService.ValidateParameters("919542684424", "2022-05-27 22:13:00","this is sample message")).isEqualTo(true);
 		
 	}
 	
